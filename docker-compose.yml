@@ -1,0 +1,198 @@
+version: "3.3"
+
+services:
+  beegfs_client1:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8 
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sh /root/ior-docker-auto.sh ${Test_Name} ${Disk1} ${Disk2} ${Size} ${Iter}     
+#        /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+#        /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_1
+    networks:
+      - sshtest
+    ports:
+      - "22"     
+      - "8004"
+      - "8006"  
+    volumes:
+       - /mnt/beegfs/1:/mnt/beegfs
+       - /root/beegfs-elbencho/auto:/root 
+  beegfs_client2:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_2
+    networks:
+      - sshtest
+    ports:
+      - "22"      
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/2:/mnt/beegfs
+
+  beegfs_client3:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_3
+    networks:
+      - sshtest
+    ports:
+      - "22"      
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/3:/mnt/beegfs
+
+
+  beegfs_client4:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_4
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/4:/mnt/beegfs
+
+  beegfs_client5:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_5
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/5:/mnt/beegfs
+
+  beegfs_client6:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_6
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/6:/mnt/beegfs
+
+  beegfs_client7:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_7
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/7:/mnt/beegfs
+
+
+  beegfs_client8:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_8
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/8:/mnt/beegfs
+
+  beegfs_client9:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_9
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/9:/mnt/beegfs
+
+  beegfs_client10:
+    image: 192.168.61.4:5000/beegfs-client-ior:0.8
+    command:
+     - /bin/bash
+     - -c
+     - |
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -w -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+       /usr/lib64/mpich/bin/mpirun -host localhost --map-by node -np 4 /usr/local/bin/ior -a POSIX --posix.odirect -v -i 100 -g -F -e -z -k -o /mnt/beegfs/test.ior -r -t 128M -b 128M -O summaryFile=testw.json,summaryFormat=JSON
+    privileged: true
+    container_name: client_10
+    networks:
+      - sshtest
+    ports:
+      - "22"
+      - "8004"
+      - "8006"
+    volumes:
+       - /mnt/beegfs/10:/mnt/beegfs         
+         
+networks:
+  sshtest:
